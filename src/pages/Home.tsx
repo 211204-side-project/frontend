@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <section>
       <MainModalContainer />
-      Home
+      <main>Home</main>
     </section>
   )
 }

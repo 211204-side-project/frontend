@@ -6,7 +6,7 @@ import {
   ModalContainer,
   ModalContent,
   ModalTitle,
-} from '../styles/main'
+} from '../styles/homePopUp.style'
 
 const HomePopUp: React.FC<ModalCloseProps> = ({ modalClose }) => {
   return (
