@@ -1,7 +1,13 @@
 import React from 'react'
+import MainModalContainer from '../modals/MainModal.container'
 
 const Home = () => {
-  return <section>Home</section>
+  return (
+    <section>
+      <MainModalContainer />
+      Home
+    </section>
+  )
 }
 
 export default Home
