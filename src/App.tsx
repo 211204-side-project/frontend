@@ -1,5 +1,5 @@
-import Routers from './routes/Routers'
 import Navigators from './pages/Navigators'
+import Routers from './routes/Routers'
 
 const App = () => {
   return (
@@ -10,6 +10,7 @@ const App = () => {
       <main>
         <Routers />
       </main>
+      <footer></footer>
     </section>
   )
 }
