@@ -34,7 +34,7 @@ export const ModalButton = styled.button`
   border: none;
   position: relative;
   left: 50%;
-  top: 45%;
+  top: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
 `

@@ -1,15 +1,19 @@
 import React from 'react'
-import Search from '../components/header/Search'
-import GoHome from '../components/header/GoHome'
-import LoggedIn from '../components/header/LoggedIn'
-import { NaviSection } from './styles/navigators.style'
+import { NaviRouter, NaviSection, NaviTitle } from './styles/navigators.style'
 
 const Navigators = () => {
   return (
     <NaviSection>
-      <GoHome />
-      <Search />
-      <LoggedIn />
+      <NaviTitle>
+        <NaviRouter to="/">
+          HOME<span>By LoremIpsum</span>
+        </NaviRouter>
+      </NaviTitle>
+      <NaviRouter to="/">Lorem1</NaviRouter>
+      <NaviRouter to="/">Lorem2</NaviRouter>
+      <NaviRouter to="/">Lorem3</NaviRouter>
+      <NaviRouter to="/">Lorem4</NaviRouter>
+      <NaviRouter to="/">Lorem5</NaviRouter>
     </NaviSection>
   )
 }
