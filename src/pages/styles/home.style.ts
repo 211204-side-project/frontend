@@ -1,12 +1,10 @@
 import styled from 'styled-components'
-import Background from '../../assets/images/test.jpeg'
 
 export const Main = styled.section`
   align-items: center;
   display: flex;
   justify-content: center;
   background-size: cover;
-  background-image: url(${Background});
   min-height: 100vh;
   position: relative;
   text-align: center;
