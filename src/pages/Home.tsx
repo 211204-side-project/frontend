@@ -1,6 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import MainModalContainer from '../modals/MainModal.container'
+import Footer from './Footer'
 import { Content, Main, SubTitle, Title, Video } from './styles/home.style'
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
       <Video autoPlay loop muted>
         <source src="assets/videos/eeee.mp4" type="video/mp4" />
       </Video>
+      <Footer />
     </Main>
   )
 }
