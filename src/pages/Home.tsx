@@ -18,7 +18,7 @@ const Home = () => {
       <Video autoPlay loop muted>
         <source src="assets/videos/eeee.mp4" type="video/mp4" />
       </Video>
-      <Footer />
+
     </Main>
   )
 }
