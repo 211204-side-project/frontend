@@ -1,10 +1,14 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async'
 import MainModalContainer from '../modals/MainModal.container'
 import { Content, Main, SubTitle, Title, Video } from './styles/home.style'
 
 const Home = () => {
   return (
     <Main>
+      <Helmet>
+        <title>Home | Lorem</title>
+      </Helmet>
       <MainModalContainer />
       <Content>
         <Title>Lorem Ipsum</Title>
