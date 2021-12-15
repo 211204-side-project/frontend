@@ -30,14 +30,12 @@ const SignUp = () => {
 
     if (verifySign) {
       const { accountId, password, email, nickname } = getValues()
-
       const appendValues = {
         accountId,
         password,
         email,
         nickname,
       }
-
       try {
         const { status, data } = await axios.post('endpoint', appendValues)
 
@@ -50,6 +48,36 @@ const SignUp = () => {
     }
 
     return window.alert('Please check your verify fields')
+  }
+
+  const onCheckAccountId = async () => {
+    const { accountId } = getValues()
+    const { status, data } = await axios.post('endpoint', accountId)
+    if (status)
+      try {
+      } catch (e) {
+        console.log(e.message)
+      }
+  }
+
+  const onCheckEmail = async () => {
+    const { email } = getValues()
+    const { status, data } = await axios.post('endpoint', email)
+    if (status)
+      try {
+      } catch (e) {
+        console.log(e.message)
+      }
+  }
+
+  const onCheckNickname = async () => {
+    const { nickname } = getValues()
+    const { status, data } = await axios.post('endpoint', nickname)
+    if (status)
+      try {
+      } catch (e) {
+        console.log(e.message)
+      }
   }
 
   return (
@@ -74,7 +102,7 @@ const SignUp = () => {
             placeholder="Account ID"
             autoComplete="off"
           />
-          <button>Check</button>
+          <button onClick={onCheckAccountId}>Check</button>
           {errors.accountId && (
             <FormError errorMessage={errors.accountId.message!} />
           )}
@@ -124,7 +152,7 @@ const SignUp = () => {
             placeholder="Email"
             autoComplete="off"
           />
-          <button>Check</button>
+          <button onClick={onCheckEmail}>Check</button>
           {errors.email && <FormError errorMessage={errors.email.message!} />}
         </div>
         <div>
@@ -141,7 +169,7 @@ const SignUp = () => {
             placeholder="Nickname"
             autoComplete="off"
           />
-          <button>Check</button>
+          <button onClick={onCheckNickname}>Check</button>
           {errors.nickname && (
             <FormError errorMessage={errors.nickname.message!} />
           )}
