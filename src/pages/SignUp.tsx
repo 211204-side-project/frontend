@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import FormError from '../components/errors/FormError'
 import { useState } from 'react'
+import styled from 'styled-components'
 
 type VerifyConvention = {
   [key: string]: boolean
@@ -23,7 +24,9 @@ const SignUp = () => {
     getValues,
     watch,
     formState: { errors },
-  } = useForm()
+  } = useForm({
+    mode: 'onChange',
+  })
 
   const onSubmit = async () => {
     const verifySign = Object.keys(verify).every((key) => (verify[key] = true))
@@ -42,9 +45,7 @@ const SignUp = () => {
         if (status) {
           console.log(data)
         }
-      } catch (e) {
-        console.log(e.message)
-      }
+      } catch (e) {}
     }
 
     return window.alert('Please check your verify fields')
@@ -55,9 +56,7 @@ const SignUp = () => {
     const { status, data } = await axios.post('endpoint', accountId)
     if (status)
       try {
-      } catch (e) {
-        console.log(e.message)
-      }
+      } catch (e) {}
   }
 
   const onCheckEmail = async () => {
@@ -65,9 +64,7 @@ const SignUp = () => {
     const { status, data } = await axios.post('endpoint', email)
     if (status)
       try {
-      } catch (e) {
-        console.log(e.message)
-      }
+      } catch (e) {}
   }
 
   const onCheckNickname = async () => {
@@ -75,13 +72,11 @@ const SignUp = () => {
     const { status, data } = await axios.post('endpoint', nickname)
     if (status)
       try {
-      } catch (e) {
-        console.log(e.message)
-      }
+      } catch (e) {}
   }
 
   return (
-    <section>
+    <SignUpSection>
       <Helmet>
         <title>Create account</title>
       </Helmet>
@@ -160,7 +155,7 @@ const SignUp = () => {
             {...register('nickname', {
               required: 'You must specify a nickname',
               pattern: {
-                value: /^[A-za-z0-9]{2,12}$/,
+                value: /^[A-za-z0-9]{3,12}$/,
                 message: 'Please insert a valid nickname',
               },
             })}
@@ -177,8 +172,16 @@ const SignUp = () => {
 
         <input type="submit" value="Sign up" />
       </form>
-    </section>
+    </SignUpSection>
   )
 }
+
+const SignUpSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`
 
 export default SignUp
