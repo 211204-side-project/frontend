@@ -5,6 +5,12 @@ import { useNavigate } from 'react-router-dom'
 import FormError from '../components/errors/FormError'
 import { useState } from 'react'
 import styled from 'styled-components'
+import {
+  checkVerifySign,
+  checkAccountId,
+  checkEmail,
+  checkNickname,
+} from '../API/user'
 
 type VerifyConvention = {
   [key: string]: boolean
@@ -40,12 +46,10 @@ const SignUp = () => {
         nickname,
       }
       try {
-        const { status, data } = await axios.post('endpoint', appendValues)
-
-        if (status) {
-          console.log(data)
-        }
-      } catch (e) {}
+        const { data } = await checkVerifySign(appendValues)
+      } catch (e) {
+        console.log('e', e)
+      }
     }
 
     return window.alert('Please check your verify fields')
@@ -53,26 +57,29 @@ const SignUp = () => {
 
   const onCheckAccountId = async () => {
     const { accountId } = getValues()
-    const { status, data } = await axios.post('endpoint', accountId)
-    if (status)
-      try {
-      } catch (e) {}
+    try {
+      const { data } = await checkAccountId(accountId)
+    } catch (e) {
+      console.log('e', e)
+    }
   }
 
   const onCheckEmail = async () => {
     const { email } = getValues()
-    const { status, data } = await axios.post('endpoint', email)
-    if (status)
-      try {
-      } catch (e) {}
+    try {
+      const { data } = await checkEmail(email)
+    } catch (e) {
+      console.log('e', e)
+    }
   }
 
   const onCheckNickname = async () => {
     const { nickname } = getValues()
-    const { status, data } = await axios.post('endpoint', nickname)
-    if (status)
-      try {
-      } catch (e) {}
+    try {
+      const { data } = await checkNickname(nickname)
+    } catch (e) {
+      console.log('e', e)
+    }
   }
 
   return (
