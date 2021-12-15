@@ -27,26 +27,14 @@ describe('sign up', () => {
   })
 
   it('should render validate fields', async () => {
-    const { getByPlaceholderText, debug } = renderResult
+    const { getByPlaceholderText, debug, getByRole } = renderResult
     const accountId = getByPlaceholderText('Account ID')
     const password = getByPlaceholderText('Password')
 
     await waitFor(() => {
       userEvent.type(accountId, '1')
     })
-
-    await waitFor(() => {
-      userEvent.clear(accountId)
-    })
-
-    await waitFor(() => {
-      userEvent.type(password, '1')
-    })
-    debug()
-
-    await waitFor(() => {
-      userEvent.clear(password)
-    })
-    debug()
+    let errorMessage = getByRole('alert')
+    expect(errorMessage).toHaveTextContent(/please insert a valid account id/i)
   })
 })
