@@ -1,19 +1,56 @@
+import axios from 'axios'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import FormError from '../components/errors/FormError'
+import { useState } from 'react'
+
+type VerifyConvention = {
+  [key: string]: boolean
+}
 
 const SignUp = () => {
   const navigator = useNavigate()
+  const [verify, setVerify] = useState<VerifyConvention>({
+    accountId: false,
+    email: false,
+    nickname: false,
+  })
 
   const {
     register,
     handleSubmit,
+    getValues,
     watch,
     formState: { errors },
   } = useForm()
 
-  const onSubmit = async () => {}
+  const onSubmit = async () => {
+    const verifySign = Object.keys(verify).every((key) => (verify[key] = true))
+
+    if (verifySign) {
+      const { accountId, password, email, nickname } = getValues()
+
+      const appendValues = {
+        accountId,
+        password,
+        email,
+        nickname,
+      }
+
+      try {
+        const { status, data } = await axios.post('endpoint', appendValues)
+
+        if (status) {
+          console.log(data)
+        }
+      } catch (e) {
+        console.log(e.message)
+      }
+    }
+
+    return window.alert('Please check your verify fields')
+  }
 
   return (
     <section>
