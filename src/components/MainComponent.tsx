@@ -7,7 +7,8 @@ import {
   Colum,
   ImageFit,
   Caption,
-} from '../pages/styles/MainComponent'
+  Wrapper_style2,
+} from '../pages/styles/MainComponent.style'
 
 const MainComponent = () => {
   return (
@@ -42,6 +43,11 @@ const MainComponent = () => {
           </FlexBoxs>
         </Inner>
       </Wrapper_style1>
+      <Wrapper_style2>
+        <Inner>
+          <Header>{/* <h2>Etiam veroeros lorem</h2> */}</Header>
+        </Inner>
+      </Wrapper_style2>
     </>
   )
 }

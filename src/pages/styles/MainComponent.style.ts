@@ -5,7 +5,8 @@ export const Wrapper_style1 = styled.section`
   color: #c1c7cd;
   width: 100%;
   height: 100vh;
-  padding: 6em 0 4em 0;
+  /* padding: 6em 0 4em 0; */
+  padding-top: 6rem;
   position: relative;
   display: flex;
   justify-content: center;
@@ -28,7 +29,7 @@ export const Wrapper_style1 = styled.section`
 export const Inner = styled.div`
   width: 80%;
   margin: 0 1.5rem;
-  z-index: 99;
+  z-index: 1;
   @media screen and (max-width: 980px) {
     width: 90%;
   }
@@ -67,24 +68,28 @@ export const Colum = styled.div`
   overflow: hidden;
   position: relative;
   margin-bottom: 32px;
-`
-
-export const ImageFit = styled.div`
-  margin: 0;
-  position: relative;
-  overflow: hidden;
-  display: block;
-  width: 100%;
   img {
     width: 100%;
     height: 350px;
     object-fit: cover;
     transition: transform 0.2s ease-in-out;
   }
-  img:hover {
+  &:hover {
     cursor: pointer;
-    transform: scale(1.075);
+    img {
+      height: 350px;
+      transform: scale(1.075);
+    }
   }
+`
+
+export const ImageFit = styled.div`
+  margin: 0;
+  max-height: 350px;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  width: 100%;
 `
 
 export const Caption = styled.p`
@@ -99,4 +104,30 @@ export const Caption = styled.p`
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   line-height: 1.85;
+`
+
+//section2
+export const Wrapper_style2 = styled.section`
+  background-color: #041625;
+  color: #c0c5c9;
+  width: 100%;
+  height: 100vh;
+  padding: 6em 0 4em 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-image: url(../../../assets/images/bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.35;
+    z-index: 1;
+  }
 `
