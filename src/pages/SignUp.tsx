@@ -170,7 +170,7 @@ const SignUp = () => {
           )}
         </div>
 
-        <input type="submit" value="Sign up" />
+        <input role="button" type="submit" value="Sign up" />
       </form>
     </SignUpSection>
   )

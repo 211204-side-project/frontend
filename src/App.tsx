@@ -7,6 +7,7 @@ const App = () => {
     <section>
       <Navigators />
       <Routers />
+      {/*Main*/}
       <Footer />
     </section>
   )

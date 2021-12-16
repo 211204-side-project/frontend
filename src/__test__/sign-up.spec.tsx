@@ -27,9 +27,8 @@ describe('sign up', () => {
   })
 
   it('should render validate fields', async () => {
-    const { getByPlaceholderText, debug } = renderResult
+    const { getByPlaceholderText } = renderResult
     const accountId = getByPlaceholderText('Account ID')
-    const password = getByPlaceholderText('Password')
 
     await waitFor(() => {
       userEvent.type(accountId, '1')
@@ -38,14 +37,19 @@ describe('sign up', () => {
     await waitFor(() => {
       userEvent.clear(accountId)
     })
+  })
+
+  it('test sign up', async () => {
+    const { getByPlaceholderText, debug } = renderResult
+
+    const accountId = getByPlaceholderText(/account id/i)
+    const password = getByPlaceholderText('Password')
+    const confirmPassword = getByPlaceholderText('Confirm Password')
 
     await waitFor(() => {
-      userEvent.type(password, '1')
-    })
-    debug()
-
-    await waitFor(() => {
-      userEvent.clear(password)
+      userEvent.type(accountId, '1sssssse')
+      userEvent.type(password, 'qwer12345')
+      userEvent.type(confirmPassword, 'qwer12345')
     })
     debug()
   })

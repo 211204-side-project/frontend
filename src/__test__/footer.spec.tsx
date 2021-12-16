@@ -5,6 +5,5 @@ import Footer from '../pages/Footer'
 describe('footer', () => {
   it('should be render to footer', () => {
     const { debug } = render(<Footer />)
-    debug()
   })
 })

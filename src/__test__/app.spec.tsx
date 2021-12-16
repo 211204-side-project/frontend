@@ -13,6 +13,5 @@ describe('app render', () => {
         </HelmetProvider>
       </BrowserRouter>,
     )
-    debug()
   })
 })
