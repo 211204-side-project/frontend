@@ -5,8 +5,7 @@ export const Wrapper_style1 = styled.section`
   color: #c1c7cd;
   width: 100%;
   height: 100vh;
-  /* padding: 6em 0 4em 0; */
-  padding-top: 6rem;
+  padding: 6em 0 4em 0;
   position: relative;
   display: flex;
   justify-content: center;
