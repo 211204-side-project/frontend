@@ -46,7 +46,7 @@ const MainComponent = () => {
       <Wrapper_style2>
         <Inner>
           <Header>
-            <img src="assets/images/pic07.jpeg"></img>
+            <img src="assets/images/pic07.jpg"></img>
           </Header>
         </Inner>
       </Wrapper_style2>
