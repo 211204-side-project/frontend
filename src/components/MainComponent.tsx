@@ -45,7 +45,11 @@ const MainComponent = () => {
       </Wrapper_style1>
       <Wrapper_style2>
         <Inner>
-          <Header></Header>
+          <Header>
+            <video autoPlay loop muted>
+              <source src="assets/videos/eeee.mp4" type="video/mp4" />
+            </video>
+          </Header>
         </Inner>
       </Wrapper_style2>
     </>
