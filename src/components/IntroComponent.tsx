@@ -19,7 +19,7 @@ const IntroComponent = () => {
       {/* <VideoSection autoPlay loop muted>
         <source src="assets/videos/eeee.mp4" type="video/mp4" />
       </VideoSection> */}
-      <img src="assets/images/test.jpeg"></img>
+      <img src="assets/images/cat.jpeg"></img>
     </Main>
   )
 }
