@@ -5,7 +5,7 @@ import {
   Main,
   SubTitle,
   Title,
-  Video,
+  VideoSection,
 } from '../pages/styles/home.style'
 
 const IntroComponent = () => {
@@ -16,9 +16,9 @@ const IntroComponent = () => {
         <Title>Lorem Ipsum</Title>
         <SubTitle>Lorem Ipsum content......</SubTitle>
       </Content>
-      <Video autoPlay loop muted>
+      <VideoSection autoPlay loop muted>
         <source src="assets/videos/eeee.mp4" type="video/mp4" />
-      </Video>
+      </VideoSection>
     </Main>
   )
 }

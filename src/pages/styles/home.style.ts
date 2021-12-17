@@ -38,7 +38,7 @@ export const SubTitle = styled.p`
   font-size: 1.5em;
 `
 
-export const Video = styled.video`
+export const VideoSection = styled.video`
   transform: translateX(50%) translateY(50%);
   position: absolute;
   bottom: 50%;

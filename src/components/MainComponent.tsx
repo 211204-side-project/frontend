@@ -45,7 +45,7 @@ const MainComponent = () => {
       </Wrapper_style1>
       <Wrapper_style2>
         <Inner>
-          <Header>{/* <h2>Etiam veroeros lorem</h2> */}</Header>
+          <Header></Header>
         </Inner>
       </Wrapper_style2>
     </>
