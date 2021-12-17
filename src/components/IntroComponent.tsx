@@ -16,9 +16,10 @@ const IntroComponent = () => {
         <Title>Lorem Ipsum</Title>
         <SubTitle>Lorem Ipsum content......</SubTitle>
       </Content>
-      <VideoSection autoPlay loop muted>
+      {/* <VideoSection autoPlay loop muted>
         <source src="assets/videos/eeee.mp4" type="video/mp4" />
-      </VideoSection>
+      </VideoSection> */}
+      <img src="assets/images/test.jpeg"></img>
     </Main>
   )
 }
