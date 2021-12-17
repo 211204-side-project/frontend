@@ -3,10 +3,17 @@ import { Helmet } from 'react-helmet-async'
 import MainComponent from '../components/MainComponent'
 import Footer from './Footer'
 import IntroComponent from '../components/IntroComponent'
+import styled from 'styled-components'
+
+const HomeSection = styled.section`
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+`
 
 const Home = () => {
   return (
-    <React.Fragment>
+    <HomeSection>
       <Helmet>
         <title>Home | Lorem</title>
       </Helmet>
@@ -14,7 +21,7 @@ const Home = () => {
       <IntroComponent />
       <MainComponent />
       <Footer />
-    </React.Fragment>
+    </HomeSection>
   )
 }
 

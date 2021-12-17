@@ -8,12 +8,13 @@ export const Main = styled.section`
   min-height: 100vh;
   position: relative;
   text-align: center;
-  height: 100vh !important;
+  height: 100vh;
   padding: 8em 0px 6em;
   background-position: center center;
   background-repeat: no-repeat;
   border-top: 0px;
   overflow: hidden;
+  scroll-snap-align: start;
 `
 
 export const Content = styled.div`

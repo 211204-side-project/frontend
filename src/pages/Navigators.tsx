@@ -13,7 +13,6 @@ const Navigators = () => {
       <NaviRouter to="/">Lorem2</NaviRouter>
       <NaviRouter to="/">Lorem3</NaviRouter>
       <NaviRouter to="/">Lorem4</NaviRouter>
-      <NaviRouter to="/create-account">Create Account</NaviRouter>
     </NaviSection>
   )
 }

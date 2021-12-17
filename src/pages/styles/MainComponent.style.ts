@@ -9,6 +9,7 @@ export const Wrapper_style1 = styled.section`
   position: relative;
   display: flex;
   justify-content: center;
+  scroll-snap-align: start;
   &:before {
     content: '';
     position: absolute;
@@ -115,6 +116,7 @@ export const Wrapper_style2 = styled.section`
   position: relative;
   display: flex;
   justify-content: center;
+  scroll-snap-align: start;
   &:before {
     content: '';
     position: absolute;

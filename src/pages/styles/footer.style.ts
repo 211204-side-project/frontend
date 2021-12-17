@@ -2,16 +2,18 @@ import styled from 'styled-components'
 
 const Footer = styled.footer`
   width: 100%;
-  /* position: fixed; */
-  /* bottom: 0px; */
+  height: 100vh;
   z-index: 100;
   display: flex;
   justify-content: center;
   background-color: #020b13;
+  scroll-snap-align: start;
 `
 
 const IntroduceMembers = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 const MemberList = styled.ul`
