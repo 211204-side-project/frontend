@@ -11,16 +11,21 @@ import {
   checkEmail,
   checkNickname,
 } from '../API/user'
+import { User } from '../common/interfaces/user/user.interface'
 
 type VerifyConvention = {
   [key: string]: boolean
+}
+
+interface UserAccount extends User {
+  confirmPassword: string
 }
 
 const SignUp = () => {
   const navigator = useNavigate()
   const [verify, setVerify] = useState<VerifyConvention>({
     accountId: false,
-    email: false,
+    phoneNumber: false,
     nickname: false,
   })
 
@@ -30,20 +35,25 @@ const SignUp = () => {
     getValues,
     watch,
     formState: { errors },
-  } = useForm({
+  } = useForm<UserAccount>({
     mode: 'onChange',
+    defaultValues: {
+      userImgUrl: null,
+    },
   })
 
   const onSubmit = async () => {
     const verifySign = Object.keys(verify).every((key) => (verify[key] = true))
 
     if (verifySign) {
-      const { accountId, password, email, nickname } = getValues()
+      const { accountId, password, phoneNumber, nickname, userImgUrl } =
+        getValues()
       const appendValues = {
         accountId,
         password,
-        email,
+        phoneNumber,
         nickname,
+        userImgUrl,
       }
       try {
         const { data } = await checkVerifySign(appendValues)
@@ -65,9 +75,9 @@ const SignUp = () => {
   }
 
   const onCheckEmail = async () => {
-    const { email } = getValues()
+    const { phoneNumber } = getValues()
     try {
-      const { data } = await checkEmail(email)
+      const { data } = await checkEmail(phoneNumber)
     } catch (e) {
       console.log('e', e)
     }
@@ -142,20 +152,22 @@ const SignUp = () => {
         </div>
         <div>
           <input
-            {...register('email', {
-              required: 'You must specify a email',
+            {...register('phoneNumber', {
+              required: 'You must specify a phoneNumber',
               pattern: {
-                value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
-                message: 'Please insert a valid email address',
+                value: /^[0-9]{3}[-]+[0-9]{4}[-]+[0-9]{4}$/,
+                message: 'Please insert a valid phoneNumber',
               },
             })}
-            type="email"
-            name="email"
+            type="phoneNumber"
+            name="phoneNumber"
             placeholder="Email"
             autoComplete="off"
           />
           <button onClick={onCheckEmail}>Check</button>
-          {errors.email && <FormError errorMessage={errors.email.message!} />}
+          {errors.phoneNumber && (
+            <FormError errorMessage={errors.phoneNumber.message!} />
+          )}
         </div>
         <div>
           <input
@@ -175,6 +187,15 @@ const SignUp = () => {
           {errors.nickname && (
             <FormError errorMessage={errors.nickname.message!} />
           )}
+        </div>
+        <div>
+          <input
+            role="img"
+            {...register('userImgUrl')}
+            type="file"
+            name="userImgUrl"
+            accept="image/*"
+          />
         </div>
 
         <input role="button" type="submit" value="Sign up" />

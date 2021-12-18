@@ -40,7 +40,7 @@ describe('sign up', () => {
   })
 
   it('test sign up', async () => {
-    const { getByPlaceholderText, debug } = renderResult
+    const { getByPlaceholderText } = renderResult
 
     const accountId = getByPlaceholderText(/account id/i)
     const password = getByPlaceholderText('Password')
@@ -51,6 +51,5 @@ describe('sign up', () => {
       userEvent.type(password, 'qwer12345')
       userEvent.type(confirmPassword, 'qwer12345')
     })
-    debug()
   })
 })
