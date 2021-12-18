@@ -1,5 +1,11 @@
 import styled from 'styled-components'
 
+export const HomeSection = styled.section`
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+`
+
 export const Main = styled.section`
   align-items: center;
   display: flex;

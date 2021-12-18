@@ -3,13 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import MainComponent from '../components/MainComponent'
 import Footer from './Footer'
 import IntroComponent from '../components/IntroComponent'
-import styled from 'styled-components'
-
-const HomeSection = styled.section`
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-`
+import { HomeSection } from './styles/home.style'
 
 const Home = () => {
   return (
