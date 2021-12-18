@@ -51,7 +51,7 @@ const Footer = () => {
   }
 
   return (
-    <FooterElement>
+    <FooterElement className="section-4">
       <IntroduceMembers>
         <Title>FE</Title>
         <MemberList className="FE">

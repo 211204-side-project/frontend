@@ -4,6 +4,7 @@ import MainComponent from '../components/MainComponent'
 import Footer from './Footer'
 import IntroComponent from '../components/IntroComponent'
 import { HomeSection } from './styles/home.style'
+import SelectSection from '../components/SelectSection'
 
 const Home = () => {
   return (
@@ -11,7 +12,7 @@ const Home = () => {
       <Helmet>
         <title>Home | Lorem</title>
       </Helmet>
-
+      <SelectSection />
       <IntroComponent />
       <MainComponent />
       <Footer />
