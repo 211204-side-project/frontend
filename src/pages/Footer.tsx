@@ -42,7 +42,7 @@ const BE: MemberType[] = [
 const Footer = () => {
   const printMember = (member: MemberType) => {
     return (
-      <Member className={member.EngName}>
+      <Member key={member.EngName} className={member.EngName}>
         <GitHubLink href={member.github} target="_blank">
           {member.korName}
         </GitHubLink>
