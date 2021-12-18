@@ -15,27 +15,27 @@ const FE: MemberType[] = [
   {
     EngName: 'MOGURI',
     github: 'https://github.com/moguri846',
-    korName: '모구리',
+    KorName: '모구리',
   },
-  { EngName: 'MAD', github: 'https://github.com/maaaaaaaaad', korName: 'MAD' },
+  { EngName: 'MAD', github: 'https://github.com/maaaaaaaaad', KorName: 'MAD' },
   {
     EngName: 'LIM-JUNG-MYEONG',
     github: 'https://github.com/wjdaud107',
-    korName: '임정명',
+    KorName: '임정명',
   },
 ]
 
 const BE: MemberType[] = [
-  { EngName: 'SANHA', github: 'https://github.com/9sanha', korName: '산하' },
+  { EngName: 'SANHA', github: 'https://github.com/9sanha', KorName: '산하' },
   {
     EngName: 'WOO-TAE-GYUN',
     github: 'https://github.com/TaegyunWoo',
-    korName: '우태균',
+    KorName: '우태균',
   },
   {
     EngName: 'SHIN-HEE-JAE',
     github: 'https://github.com/whco',
-    korName: '신희재',
+    KorName: '신희재',
   },
 ]
 
@@ -44,7 +44,7 @@ const Footer = () => {
     return (
       <Member key={member.EngName} className={member.EngName}>
         <GitHubLink href={member.github} target="_blank">
-          {member.korName}
+          {member.KorName}
         </GitHubLink>
       </Member>
     )
