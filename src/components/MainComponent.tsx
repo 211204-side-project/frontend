@@ -13,7 +13,7 @@ import {
 const MainComponent = () => {
   return (
     <>
-      <Wrapper_style1>
+      <Wrapper_style1 className="section-2">
         <Inner>
           <Header>
             <h2>Nam eu nisi non ante sodale</h2>
@@ -43,7 +43,7 @@ const MainComponent = () => {
           </FlexBoxs>
         </Inner>
       </Wrapper_style1>
-      <Wrapper_style2>
+      <Wrapper_style2 className="section-3">
         <Inner>
           <Header>
             <img src="assets/images/pic07.jpg"></img>

@@ -10,7 +10,7 @@ import {
 
 const IntroComponent = () => {
   return (
-    <Main>
+    <Main className="section-1">
       <MainModalContainer />
       <Content>
         <Title>Lorem Ipsum</Title>
