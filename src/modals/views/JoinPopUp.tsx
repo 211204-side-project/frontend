@@ -1,22 +1,14 @@
 import React from 'react'
 import { ModalCloseProps } from '../interface/closeBtn.interface'
-import {
-  Modal,
-  ModalButton,
-  ModalContainer,
-  ModalContent,
-  ModalTitle,
-} from '../styles/homePopUp.style'
+import { JoinContainer, Modal, ModalButton } from '../styles/JoinPopUp.style'
 
 const JoinPopUp: React.FC<ModalCloseProps> = ({ modalClose }) => {
   return (
-    <ModalContainer>
+    <JoinContainer>
       <Modal>
-        <ModalTitle>Hello World!</ModalTitle>
-        <ModalContent>Lorem Ipsum.. This is test modal</ModalContent>
         <ModalButton onClick={modalClose}>X</ModalButton>
       </Modal>
-    </ModalContainer>
+    </JoinContainer>
   )
 }
 
