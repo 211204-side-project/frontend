@@ -71,7 +71,10 @@ export const ModalButton = styled.button`
 `
 export const ModalContent = styled.div`
   width: 100%;
-  height: 80%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 export const ModalBottom = styled.div`

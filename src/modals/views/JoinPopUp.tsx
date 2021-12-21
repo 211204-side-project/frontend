@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { ModalCloseProps } from '../interface/closeBtn.interface'
+import SignUp from '../../pages/SignUp'
 import {
   JoinContainer,
   Modal,
@@ -13,17 +14,17 @@ import {
 } from '../styles/JoinPopUp.style'
 
 const JoinPopUp: React.FC<ModalCloseProps> = ({ modalClose }) => {
-  const [Login, setLogin] = useState<boolean>(true)
-  const [SignUp, setSignUp] = useState<boolean>(false)
+  const [isLogin, setIsLogin] = useState<boolean>(true)
+  const [isSignUp, setIsSignUp] = useState<boolean>(false)
 
   const handleJoin = () => {
-    if (!Login && SignUp) {
-      setLogin(!Login)
-      setSignUp(!SignUp)
+    if (!isLogin && isSignUp) {
+      setIsLogin(!isLogin)
+      setIsSignUp(!isSignUp)
     }
-    if (Login && !SignUp) {
-      setLogin(!Login)
-      setSignUp(!SignUp)
+    if (isLogin && !isSignUp) {
+      setIsLogin(!isLogin)
+      setIsSignUp(!isSignUp)
     }
   }
   return (
@@ -33,20 +34,22 @@ const JoinPopUp: React.FC<ModalCloseProps> = ({ modalClose }) => {
         <ModalHeader>
           <SelectJoin
             onClick={handleJoin}
-            className={Login ? 'active' : undefined}
+            className={isLogin ? 'active' : undefined}
           >
             Login
           </SelectJoin>
           <SelectJoin
             onClick={handleJoin}
-            className={SignUp ? 'active' : undefined}
+            className={isSignUp ? 'active' : undefined}
           >
             SigninUp
           </SelectJoin>
         </ModalHeader>
-        <ModalContent></ModalContent>
+        <ModalContent>
+          {isLogin ? '로그인 페이지를 넣어주세요' : <SignUp />}
+        </ModalContent>
         <ModalBottom>
-          {Login ? (
+          {isLogin ? (
             <BottomSelect>회원가입 하러가기</BottomSelect>
           ) : (
             <BottomSelect>로그인 하러가기</BottomSelect>
