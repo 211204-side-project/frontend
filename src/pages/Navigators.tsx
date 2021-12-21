@@ -15,8 +15,8 @@ const Navigators: React.FC<OnClickJoin> = ({ modalClose, IsLogin }) => {
       <NaviRouter to="/">Lorem3</NaviRouter>
       <NaviRouter to="/" onClick={modalClose}>
         Join
-        {IsLogin && <JoinPopUp modalClose={modalClose} />}
       </NaviRouter>
+      {IsLogin && <JoinPopUp modalClose={modalClose} />}
     </NaviSection>
   )
 }
