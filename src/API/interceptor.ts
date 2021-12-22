@@ -6,6 +6,12 @@ const instance: AxiosInstance = axios.create({
 
 instance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
+    const token = localStorage.getItem('access_token')
+    if (token) {
+      config.headers = {
+        Authorization: token,
+      }
+    }
     return config
   },
   (err) => Promise.reject(err),
