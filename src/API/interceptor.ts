@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 
 const instance: AxiosInstance = axios.create({
-  baseURL: '서버 주소/api',
+  baseURL: 'http://13.124.115.72:8080/api',
 })
 
 instance.interceptors.request.use(
