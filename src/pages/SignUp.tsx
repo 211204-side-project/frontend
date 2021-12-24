@@ -56,9 +56,11 @@ const SignUp = () => {
         const { status, data } = await onSignUp(appendValues)
         if (status) {
           console.log(data)
+          return
         }
       } catch (e) {
         console.log('e', e)
+        return
       }
     }
 
@@ -72,7 +74,6 @@ const SignUp = () => {
     try {
       const { status, data } = await checkAccountId(accountId)
       status && !!data && setVerify({ ...verify, accountId: true })
-      console.log(verify)
     } catch (e) {
       console.log('e', e)
     }
@@ -84,7 +85,6 @@ const SignUp = () => {
     try {
       const { status, data } = await checkPhoneNumber(phoneNumber)
       status && !!data && setVerify({ ...verify, phoneNumber: true })
-      console.log(verify)
     } catch (e) {
       console.log('e', e)
     }
@@ -96,7 +96,6 @@ const SignUp = () => {
     try {
       const { status, data } = await checkNickname(nickname)
       status && !!data && setVerify({ ...verify, nickname: true })
-      console.log(verify)
     } catch (e) {
       console.log('e', e)
     }
