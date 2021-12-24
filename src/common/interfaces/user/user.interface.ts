@@ -3,5 +3,5 @@ export interface User {
   password: string
   phoneNumber: string
   nickname: string
-  userImgUrl: string | null
+  userImgUrl: File | null
 }

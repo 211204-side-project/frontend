@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
@@ -155,7 +154,7 @@ const SignUp = () => {
             {...register('phoneNumber', {
               required: 'You must specify a phoneNumber',
               pattern: {
-                value: /^[0-9]{3}[-]+[0-9]{4}[-]+[0-9]{4}$/,
+                value: /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/,
                 message: 'Please insert a valid phoneNumber',
               },
             })}
