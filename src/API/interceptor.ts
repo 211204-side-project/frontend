@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 
 const instance: AxiosInstance = axios.create({
-  baseURL: 'http://13.124.115.72:8080/api',
+  baseURL: `${process.env.REACT_APP_SERVER_URI}/api/`,
 })
 
 instance.interceptors.request.use(

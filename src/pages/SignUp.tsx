@@ -2,12 +2,12 @@ import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import FormError from '../components/errors/FormError'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import {
-  checkVerifySign,
+  onSignUp,
   checkAccountId,
-  checkEmail,
+  checkPhoneNumber,
   checkNickname,
 } from '../API/user'
 import { User } from '../common/interfaces/user/user.interface'
@@ -45,47 +45,58 @@ const SignUp = () => {
     const verifySign = Object.keys(verify).every((key) => (verify[key] = true))
 
     if (verifySign) {
-      const { accountId, password, phoneNumber, nickname, userImgUrl } =
-        getValues()
+      const { accountId, password, phoneNumber, nickname } = getValues()
       const appendValues = {
         accountId,
         password,
         phoneNumber,
         nickname,
-        userImgUrl,
       }
       try {
-        const { data } = await checkVerifySign(appendValues)
+        const { status, data } = await onSignUp(appendValues)
+        if (status) {
+          console.log(data)
+        }
       } catch (e) {
         console.log('e', e)
       }
     }
 
+    Object.keys(verify).forEach((key) => (verify[key] = false))
     return window.alert('Please check your verify fields')
   }
 
-  const onCheckAccountId = async () => {
+  const onCheckAccountId = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
     const { accountId } = getValues()
     try {
-      const { data } = await checkAccountId(accountId)
+      const { status, data } = await checkAccountId(accountId)
+      status && !!data && setVerify({ ...verify, accountId: true })
+      console.log(verify)
     } catch (e) {
       console.log('e', e)
     }
   }
 
-  const onCheckEmail = async () => {
+  const onCheckPhoneNumber = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
     const { phoneNumber } = getValues()
     try {
-      const { data } = await checkEmail(phoneNumber)
+      const { status, data } = await checkPhoneNumber(phoneNumber)
+      status && !!data && setVerify({ ...verify, phoneNumber: true })
+      console.log(verify)
     } catch (e) {
       console.log('e', e)
     }
   }
 
-  const onCheckNickname = async () => {
+  const onCheckNickname = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
     const { nickname } = getValues()
     try {
-      const { data } = await checkNickname(nickname)
+      const { status, data } = await checkNickname(nickname)
+      status && !!data && setVerify({ ...verify, nickname: true })
+      console.log(verify)
     } catch (e) {
       console.log('e', e)
     }
@@ -113,7 +124,12 @@ const SignUp = () => {
             placeholder="Account ID"
             autoComplete="off"
           />
-          <button onClick={onCheckAccountId}>Check</button>
+          {verify.accountId ? (
+            'OK'
+          ) : (
+            <button onClick={onCheckAccountId}>Check</button>
+          )}
+
           {errors.accountId && (
             <FormError errorMessage={errors.accountId.message!} />
           )}
@@ -160,10 +176,15 @@ const SignUp = () => {
             })}
             type="phoneNumber"
             name="phoneNumber"
-            placeholder="Email"
+            placeholder="Phone number, exclude '-'"
             autoComplete="off"
           />
-          <button onClick={onCheckEmail}>Check</button>
+          {verify.phoneNumber ? (
+            'OK'
+          ) : (
+            <button onClick={onCheckPhoneNumber}>Check</button>
+          )}
+
           {errors.phoneNumber && (
             <FormError errorMessage={errors.phoneNumber.message!} />
           )}
@@ -182,19 +203,14 @@ const SignUp = () => {
             placeholder="Nickname"
             autoComplete="off"
           />
-          <button onClick={onCheckNickname}>Check</button>
+          {verify.nickname ? (
+            'OK'
+          ) : (
+            <button onClick={onCheckNickname}>Check</button>
+          )}
           {errors.nickname && (
             <FormError errorMessage={errors.nickname.message!} />
           )}
-        </div>
-        <div>
-          <input
-            role="img"
-            {...register('userImgUrl')}
-            type="file"
-            name="userImgUrl"
-            accept="image/*"
-          />
         </div>
 
         <input role="button" type="submit" value="Sign up" />

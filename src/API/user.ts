@@ -7,36 +7,36 @@ enum Method {
   DELETE = 'DELETE',
 }
 
-const checkVerifySign = (sign: object) => {
+const onSignUp = (sign: object) => {
   return Send({
     method: Method.POST,
-    url: '',
-    data: sign,
+    url: 'user/signup',
+    data: JSON.stringify(sign),
   })
 }
 
 const checkAccountId = (accountId: string) => {
   return Send({
     method: Method.POST,
-    url: '',
-    data: { accountId },
+    url: 'auth/accountId',
+    data: JSON.stringify(accountId),
   })
 }
 
-const checkEmail = (email: string) => {
+const checkPhoneNumber = (email: string) => {
   return Send({
     method: Method.POST,
-    url: '',
-    data: { email },
+    url: 'auth/phoneNumber',
+    data: JSON.stringify(email),
   })
 }
 
 const checkNickname = (nickname: string) => {
   return Send({
     method: Method.POST,
-    url: '',
-    data: { nickname },
+    url: 'auth/nickname',
+    data: JSON.stringify(nickname),
   })
 }
 
-export { checkVerifySign, checkAccountId, checkEmail, checkNickname }
+export { onSignUp, checkAccountId, checkPhoneNumber, checkNickname }
