@@ -1,5 +1,4 @@
 import React from 'react'
-import MainModalContainer from '../modals/MainModal.container'
 import {
   Content,
   Main,
@@ -11,16 +10,13 @@ import {
 const IntroComponent = () => {
   return (
     <Main className="section-1">
-      <MainModalContainer />
       <Content>
         <Title>Lorem Ipsum</Title>
         <SubTitle>Lorem Ipsum content......</SubTitle>
       </Content>
       <VideoSection autoPlay loop muted>
-        {/* <source src="assets/videos/eeee.mp4" type="video/mp4" /> */}
         <source src="assets/videos/eeee.webm" type="video/webm" />
       </VideoSection>
-      {/* <img src="assets/images/cat.jpg"></img> */}
     </Main>
   )
 }
