@@ -16,23 +16,23 @@ const onSignUp = (sign: Omit<User, 'userImgUrl'>) => {
   })
 }
 
-const checkAccountId = (checkId: string) => {
+const checkAccountId = (accountId: Pick<User, 'accountId'>) => {
   return Send({
     method: Method.POST,
     url: 'auth/accountId',
-    data: checkId,
+    data: accountId,
   })
 }
 
-const checkPhoneNumber = (email: string) => {
+const checkPhoneNumber = (phoneNumber: Pick<User, 'phoneNumber'>) => {
   return Send({
     method: Method.POST,
     url: 'auth/phoneNumber',
-    data: email,
+    data: phoneNumber,
   })
 }
 
-const checkNickname = (nickname: string) => {
+const checkNickname = (nickname: Pick<User, 'nickname'>) => {
   return Send({
     method: Method.POST,
     url: 'auth/nickname',

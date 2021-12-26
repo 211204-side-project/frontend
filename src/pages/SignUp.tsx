@@ -72,7 +72,10 @@ const SignUp = () => {
     e.preventDefault()
     const { accountId } = getValues()
     try {
-      const { status, data } = await checkAccountId(accountId)
+      const checkId: Pick<User, 'accountId'> = {
+        accountId,
+      }
+      const { status, data } = await checkAccountId(checkId)
       status && !!data && setVerify({ ...verify, accountId: true })
     } catch (e) {
       console.log('e', e)
@@ -82,8 +85,11 @@ const SignUp = () => {
   const onCheckPhoneNumber = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     const { phoneNumber } = getValues()
+    const checkPhone: Pick<User, 'phoneNumber'> = {
+      phoneNumber,
+    }
     try {
-      const { status, data } = await checkPhoneNumber(phoneNumber)
+      const { status, data } = await checkPhoneNumber(checkPhone)
       status && !!data && setVerify({ ...verify, phoneNumber: true })
     } catch (e) {
       console.log('e', e)
@@ -93,8 +99,12 @@ const SignUp = () => {
   const onCheckNickname = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     const { nickname } = getValues()
+    const checkNick: Pick<User, 'nickname'> = {
+      nickname,
+    }
+
     try {
-      const { status, data } = await checkNickname(nickname)
+      const { status, data } = await checkNickname(checkNick)
       status && !!data && setVerify({ ...verify, nickname: true })
     } catch (e) {
       console.log('e', e)
