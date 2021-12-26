@@ -12,7 +12,7 @@ const Navigators: React.FC<OnClickJoin> = ({ modalClose, IsLogin }) => {
       </NaviTitle>
       <NaviRouter to="/">Lorem1</NaviRouter>
       <NaviRouter to="/">Lorem2</NaviRouter>
-      <NaviRouter to="/">Lorem3</NaviRouter>
+      <NaviRouter to="/usercontoller">Lorem3</NaviRouter>
       <NaviRouter to="/" onClick={modalClose}>
         Join
       </NaviRouter>
