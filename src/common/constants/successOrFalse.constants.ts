@@ -1,0 +1,8 @@
+export const SUCCESS = 'SUCCESS!'
+export const FAIL = 'FAIL!'
+export const ALREADY_TO_ID = 'Already to ID!'
+export const ALREADY_TO_PHONE = 'Already to Phone number!'
+export const ALREADY_TO_NICK = 'Already to Nickname!'
+export const VERIFY_FIELDS = 'Please check your verify fields'
+export const FILL_FIELD = 'Please fill'
+export const INVALID_FORMAT = 'Invalid format'

@@ -1,11 +1,5 @@
 import React from 'react'
-import {
-  Content,
-  Main,
-  SubTitle,
-  Title,
-  VideoSection,
-} from '../pages/styles/home.style'
+import { Content, Main, SubTitle, Title } from '../pages/styles/home.style'
 
 const IntroComponent = () => {
   return (
@@ -14,9 +8,7 @@ const IntroComponent = () => {
         <Title>Lorem Ipsum</Title>
         <SubTitle>Lorem Ipsum content......</SubTitle>
       </Content>
-      <VideoSection autoPlay loop muted>
-        <source src="assets/videos/eeee.webm" type="video/webm" />
-      </VideoSection>
+      <h1>Intro section</h1>
     </Main>
   )
 }

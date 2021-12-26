@@ -5,12 +5,22 @@ import FormError from '../components/errors/FormError'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import {
-  onSignUp,
   checkAccountId,
-  checkPhoneNumber,
   checkNickname,
+  checkPhoneNumber,
+  onSignUp,
 } from '../API/user'
 import { User } from '../common/interfaces/user/user.interface'
+import { useSnackbar } from 'notistack'
+import {
+  ALREADY_TO_ID,
+  ALREADY_TO_NICK,
+  ALREADY_TO_PHONE,
+  FILL_FIELD,
+  INVALID_FORMAT,
+  SUCCESS,
+  VERIFY_FIELDS,
+} from '../common/constants/successOrFalse.constants'
 
 type VerifyConvention = {
   [key: string]: boolean
@@ -22,6 +32,7 @@ interface UserAccount extends User {
 
 const SignUp = () => {
   const navigator = useNavigate()
+  const { enqueueSnackbar } = useSnackbar()
   const [verify, setVerify] = useState<VerifyConvention>({
     accountId: false,
     phoneNumber: false,
@@ -33,6 +44,7 @@ const SignUp = () => {
     handleSubmit,
     getValues,
     watch,
+    reset,
     formState: { errors },
   } = useForm<UserAccount>({
     mode: 'onChange',
@@ -42,72 +54,117 @@ const SignUp = () => {
   })
 
   const onSubmit = async () => {
-    const verifySign = Object.keys(verify).every((key) => (verify[key] = true))
+    if (!verify.accountId && !verify.phoneNumber && !verify.nickname)
+      return enqueueSnackbar(VERIFY_FIELDS)
 
-    if (verifySign) {
-      const { accountId, password, phoneNumber, nickname } = getValues()
-      const appendValues = {
-        accountId,
-        password,
-        phoneNumber,
-        nickname,
+    const { accountId, password, phoneNumber, nickname } = getValues()
+    const appendValues = {
+      accountId,
+      password,
+      phoneNumber,
+      nickname,
+    }
+    try {
+      const { status, data } = await onSignUp(appendValues)
+      if (status && data === true) {
+        reset()
+        return enqueueSnackbar(SUCCESS)
       }
-      try {
-        const { status, data } = await onSignUp(appendValues)
-        if (status) {
-          console.log(data)
-          return
-        }
-      } catch (e) {
-        console.log('e', e)
-        return
-      }
+    } catch (e: any) {
+      return enqueueSnackbar(e.message)
     }
 
     Object.keys(verify).forEach((key) => (verify[key] = false))
-    return window.alert('Please check your verify fields')
   }
 
   const onCheckAccountId = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
+
     const { accountId } = getValues()
+    const regex = /^[A-za-z0-9]{4,15}$/
+    const confirm = regex.test(accountId)
+
+    if (!confirm) return enqueueSnackbar(INVALID_FORMAT)
+    if (!accountId) return enqueueSnackbar(FILL_FIELD)
+
+    const checkId: Pick<User, 'accountId'> = {
+      accountId,
+    }
+
     try {
-      const checkId: Pick<User, 'accountId'> = {
-        accountId,
-      }
       const { status, data } = await checkAccountId(checkId)
-      status && !!data && setVerify({ ...verify, accountId: true })
-    } catch (e) {
-      console.log('e', e)
+
+      if (status && data === true) {
+        setVerify({ ...verify, accountId: true })
+        return enqueueSnackbar(SUCCESS)
+      } else if (status && data === false) {
+        setVerify({ ...verify, accountId: false })
+        return enqueueSnackbar(ALREADY_TO_ID)
+      }
+
+      return
+    } catch (e: any) {
+      return enqueueSnackbar(e.message)
     }
   }
 
   const onCheckPhoneNumber = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
+
     const { phoneNumber } = getValues()
-    const checkPhone: Pick<User, 'phoneNumber'> = {
-      phoneNumber,
-    }
+    const regex = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/
+    const confirm = regex.test(phoneNumber)
+
+    if (!confirm) return enqueueSnackbar(INVALID_FORMAT)
+    if (!phoneNumber) return enqueueSnackbar(FILL_FIELD)
+
     try {
+      const checkPhone: Pick<User, 'phoneNumber'> = {
+        phoneNumber,
+      }
       const { status, data } = await checkPhoneNumber(checkPhone)
-      status && !!data && setVerify({ ...verify, phoneNumber: true })
-    } catch (e) {
-      console.log('e', e)
+
+      if (status && data === true) {
+        setVerify({ ...verify, phoneNumber: true })
+        return enqueueSnackbar(SUCCESS)
+      } else if (status && data === false) {
+        setVerify({ ...verify, phoneNumber: false })
+        return enqueueSnackbar(ALREADY_TO_PHONE)
+      }
+
+      return
+    } catch (e: any) {
+      return enqueueSnackbar(e.message)
     }
   }
 
   const onCheckNickname = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
+
     const { nickname } = getValues()
-    const checkNick: Pick<User, 'nickname'> = {
-      nickname,
-    }
+    const regex = /^[A-za-z0-9]{3,12}$/
+    const confirm = regex.test(nickname)
+
+    if (!confirm) return enqueueSnackbar(INVALID_FORMAT)
+    if (!nickname) return enqueueSnackbar(FILL_FIELD)
 
     try {
+      const checkNick: Pick<User, 'nickname'> = {
+        nickname,
+      }
       const { status, data } = await checkNickname(checkNick)
-      status && !!data && setVerify({ ...verify, nickname: true })
-    } catch (e) {
-      console.log('e', e)
+
+      if (status && data === true) {
+        setVerify({ ...verify, nickname: true })
+        return enqueueSnackbar(SUCCESS)
+      } else if (status && data === false) {
+        setVerify({ ...verify, nickname: false })
+        return enqueueSnackbar(ALREADY_TO_NICK)
+      }
+
+      return
+    } catch (e: any) {
+      return enqueueSnackbar(e.message)
     }
   }
 
@@ -130,8 +187,9 @@ const SignUp = () => {
             })}
             type="text"
             name="accountId"
-            placeholder="Account ID"
+            placeholder="Account ID (4~15 char)"
             autoComplete="off"
+            disabled={verify.accountId}
           />
           {verify.accountId ? (
             'OK'
@@ -154,7 +212,7 @@ const SignUp = () => {
             })}
             type="password"
             name="password"
-            placeholder="Password"
+            placeholder="Password (least 8 char)"
           />
           {errors.password && (
             <FormError errorMessage={errors.password.message!} />
@@ -185,8 +243,9 @@ const SignUp = () => {
             })}
             type="phoneNumber"
             name="phoneNumber"
-            placeholder="Phone number, exclude '-'"
+            placeholder="Phone number (exclude '-')"
             autoComplete="off"
+            disabled={verify.phoneNumber}
           />
           {verify.phoneNumber ? (
             'OK'
@@ -209,8 +268,9 @@ const SignUp = () => {
             })}
             type="text"
             name="nickname"
-            placeholder="Nickname"
+            placeholder="Nickname (3~12 char)"
             autoComplete="off"
+            disabled={verify.nickname}
           />
           {verify.nickname ? (
             'OK'
@@ -221,7 +281,6 @@ const SignUp = () => {
             <FormError errorMessage={errors.nickname.message!} />
           )}
         </div>
-
         <input role="button" type="submit" value="Sign up" />
       </form>
     </SignUpSection>
