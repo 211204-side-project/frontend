@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
-import { SignInReq } from './interface/signin.interface'
 import { onSignIn } from '../API/user'
 import FormError from '../components/errors/FormError'
 import { SignUpSection as SignInSection } from './SignUp'
+import { User } from '../common/interfaces/user/user.interface'
+import { useSnackbar } from 'notistack'
+import { SUCCESS } from '../common/constants/successOrFalse.constants'
 
 const Button = styled.button`
   width: 100%;
@@ -17,12 +19,14 @@ const SignIn = () => {
     password: '',
   })
 
+  const { enqueueSnackbar } = useSnackbar()
+
   const {
     register,
     handleSubmit,
     getValues,
     formState: { errors },
-  } = useForm<SignInReq>({ mode: 'onChange' })
+  } = useForm<Pick<User, 'accountId' | 'password'>>({ mode: 'onChange' })
 
   const onSubmit = async () => {
     const { accountId, password } = getValues()
@@ -35,9 +39,10 @@ const SignIn = () => {
       try {
         const { data } = await onSignIn(appendValues)
         saveToken(data.object.token)
+        enqueueSnackbar(SUCCESS)
       } catch (err: any) {
         const response = err.response.data
-        alert(response.msg)
+        enqueueSnackbar(response.msg)
       }
     }
   }
@@ -73,6 +78,7 @@ const SignIn = () => {
             type="text"
             name="accountId"
             placeholder="User ID"
+            autoComplete="off"
           />
           {errors.accountId && (
             <FormError errorMessage={errors.accountId.message!} />
