@@ -7,7 +7,10 @@ import FormError from '../components/errors/FormError'
 import { SignUpSection as SignInSection } from './SignUp'
 import { User } from '../common/interfaces/user/user.interface'
 import { useSnackbar } from 'notistack'
-import { SUCCESS } from '../common/constants/successOrFalse.constants'
+import {
+  ACCESS_TOKEN,
+  SUCCESS,
+} from '../common/constants/successOrFalse.constants'
 
 const Button = styled.button`
   width: 100%;
@@ -52,11 +55,11 @@ const SignIn = () => {
   }
 
   const saveToken = (token: string) => {
-    localStorage.setItem('access_token', token)
+    localStorage.setItem(ACCESS_TOKEN, token)
   }
 
   const removeToken = () => {
-    localStorage.removeItem('access_token')
+    localStorage.removeItem(ACCESS_TOKEN)
   }
 
   return (
