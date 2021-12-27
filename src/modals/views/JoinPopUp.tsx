@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { ModalCloseProps } from '../interface/closeBtn.interface'
+import SignIn from '../../pages/SignIn'
 import SignUp from '../../pages/SignUp'
 import {
   JoinContainer,
@@ -45,9 +46,7 @@ const JoinPopUp: React.FC<ModalCloseProps> = ({ modalClose }) => {
             SigninUp
           </SelectJoin>
         </ModalHeader>
-        <ModalContent>
-          {isLogin ? '로그인 페이지를 넣어주세요' : <SignUp />}
-        </ModalContent>
+        <ModalContent>{isLogin ? <SignIn /> : <SignUp />}</ModalContent>
         <ModalBottom>
           {isLogin ? (
             <BottomSelect>회원가입 하러가기</BottomSelect>

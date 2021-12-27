@@ -1,5 +1,7 @@
 import Send from './interceptor'
 import { User } from '../common/interfaces/user/user.interface'
+import { SignInReq, SignInRes } from '../pages/interface/signin.interface'
+import { AxiosResponse } from 'axios'
 
 enum Method {
   GET = 'GET',
@@ -40,4 +42,12 @@ const checkNickname = (nickname: Pick<User, 'nickname'>) => {
   })
 }
 
-export { onSignUp, checkAccountId, checkPhoneNumber, checkNickname }
+const onSignIn = (sign: SignInReq): Promise<AxiosResponse<SignInRes>> => {
+  return Send({
+    method: Method.POST,
+    url: '/user/signin',
+    data: sign,
+  })
+}
+
+export { onSignUp, checkAccountId, checkPhoneNumber, checkNickname, onSignIn }
