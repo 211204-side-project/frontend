@@ -54,8 +54,8 @@ const SignUp = () => {
   })
 
   const onSubmit = async () => {
-    if (!verify.accountId && !verify.phoneNumber && !verify.nickname)
-      return enqueueSnackbar(VERIFY_FIELDS)
+    const onSign: boolean = Object.keys(verify).every((key) => verify[key])
+    if (!onSign) return enqueueSnackbar(VERIFY_FIELDS)
 
     const { accountId, password, phoneNumber, nickname } = getValues()
     const appendValues = {
@@ -68,7 +68,7 @@ const SignUp = () => {
       const { status, data } = await onSignUp(appendValues)
       if (status && data === true) {
         reset()
-        return enqueueSnackbar(SUCCESS)
+        return enqueueSnackbar(`${SUCCESS} Sign Up!`)
       }
     } catch (e: any) {
       return enqueueSnackbar(e.message)
