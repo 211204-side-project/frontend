@@ -287,7 +287,7 @@ const SignUp = () => {
   )
 }
 
-const SignUpSection = styled.section`
+export const SignUpSection = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
