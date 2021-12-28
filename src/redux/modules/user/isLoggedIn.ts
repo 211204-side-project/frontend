@@ -28,5 +28,8 @@ export const setIsLoggedInReducer = (
       return {
         isLoggedIn: !!action.payload,
       }
+
+    default:
+      return state
   }
 }

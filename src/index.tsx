@@ -7,10 +7,12 @@ import { BrowserRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import { SnackbarProvider } from 'notistack'
 import { rootReducer } from './redux/modules'
-import { createStore } from 'redux'
+import { applyMiddleware, createStore } from 'redux'
 import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+import { composeEnhancers } from './redux/config/config'
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
 ReactDOM.render(
   <React.StrictMode>
