@@ -13,12 +13,13 @@ import {
 } from '../common/constants/successOrFalse.constants'
 import { useDispatch } from 'react-redux'
 import { setIsLoggedIN } from '../redux/modules/user/isLoggedIn'
+import { ModalCloseProps } from '../modals/interface/closeBtn.interface'
 
 const Button = styled.button`
   width: 100%;
 `
 
-const SignIn = () => {
+const SignIn: React.FC<ModalCloseProps> = ({ modalClose }) => {
   const dispatch = useDispatch()
 
   const { enqueueSnackbar } = useSnackbar()
@@ -44,6 +45,7 @@ const SignIn = () => {
         saveToken(token)
         dispatch(setIsLoggedIN(token))
         enqueueSnackbar(SUCCESS)
+        modalClose()
       } catch (err: any) {
         const response = err.response.data
         enqueueSnackbar(response.msg)

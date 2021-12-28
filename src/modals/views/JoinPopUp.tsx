@@ -45,7 +45,11 @@ const JoinPopUp: React.FC<ModalCloseProps> = ({ modalClose }) => {
           </SelectJoin>
         </ModalHeader>
         <ModalContent>
-          {isLogin ? <SignIn /> : <SignUp handleJoin={handleJoin} />}
+          {isLogin ? (
+            <SignIn modalClose={modalClose} />
+          ) : (
+            <SignUp handleJoin={handleJoin} />
+          )}
         </ModalContent>
         <ModalButton onClick={modalClose}>X</ModalButton>
       </Modal>
