@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
@@ -11,16 +11,15 @@ import {
   ACCESS_TOKEN,
   SUCCESS,
 } from '../common/constants/successOrFalse.constants'
+import { useDispatch } from 'react-redux'
+import { setIsLoggedIN } from '../redux/modules/user/isLoggedIn'
 
 const Button = styled.button`
   width: 100%;
 `
 
 const SignIn = () => {
-  const [state, setstate] = useState({
-    accountId: '',
-    password: '',
-  })
+  const dispatch = useDispatch()
 
   const { enqueueSnackbar } = useSnackbar()
 
@@ -41,7 +40,9 @@ const SignIn = () => {
       }
       try {
         const { data } = await onSignIn(appendValues)
-        saveToken(data.object.token)
+        const token = data.object.token
+        saveToken(token)
+        dispatch(setIsLoggedIN(token))
         enqueueSnackbar(SUCCESS)
       } catch (err: any) {
         const response = err.response.data

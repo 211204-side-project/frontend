@@ -12,12 +12,12 @@ const initialState: isLoggedInState = {
 
 const SET_IS_LOGGED_IN = 'SET_IS_LOGGED_IN' as const
 
-export const set = (token: string) => ({
+export const setIsLoggedIN = (token: string) => ({
   type: SET_IS_LOGGED_IN,
   payload: token,
 })
 
-type SetIsLoggedInAction = ReturnType<typeof set>
+type SetIsLoggedInAction = ReturnType<typeof setIsLoggedIN>
 
 export const setIsLoggedInReducer = (
   state: isLoggedInState = initialState,
