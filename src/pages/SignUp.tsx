@@ -178,7 +178,7 @@ const SignUp: React.FC<HandleJoinProp> = ({ handleJoin }) => {
       </Helmet>
 
       <h1>User Sign up!</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} method="POST">
         <div>
           <input
             {...register('accountId', {

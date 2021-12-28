@@ -71,7 +71,7 @@ const SignIn: React.FC<ModalCloseProps> = ({ modalClose }) => {
         <title>User sign in</title>
       </Helmet>
       <h1>User Sign in!</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} method="POST">
         <div>
           <input
             {...register('accountId', {
