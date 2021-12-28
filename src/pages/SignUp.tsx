@@ -30,7 +30,11 @@ interface UserAccount extends User {
   confirmPassword: string
 }
 
-const SignUp = () => {
+interface HandleJoinProp {
+  handleJoin: () => void
+}
+
+const SignUp: React.FC<HandleJoinProp> = ({ handleJoin }) => {
   const navigator = useNavigate()
   const { enqueueSnackbar } = useSnackbar()
   const [verify, setVerify] = useState<VerifyConvention>({
@@ -57,24 +61,23 @@ const SignUp = () => {
     const onSign: boolean = Object.keys(verify).every((key) => verify[key])
     if (!onSign) return enqueueSnackbar(VERIFY_FIELDS)
 
-    const { accountId, password, phoneNumber, nickname } = getValues()
-    const appendValues = {
-      accountId,
-      password,
-      phoneNumber,
-      nickname,
-    }
     try {
+      const { accountId, password, phoneNumber, nickname } = getValues()
+      const appendValues = {
+        accountId,
+        password,
+        phoneNumber,
+        nickname,
+      }
       const { status, data } = await onSignUp(appendValues)
       if (status && data === true) {
         reset()
+        handleJoin()
         return enqueueSnackbar(`${SUCCESS} Sign Up!`)
       }
     } catch (e: any) {
       return enqueueSnackbar(e.message)
     }
-
-    Object.keys(verify).forEach((key) => (verify[key] = false))
   }
 
   const onCheckAccountId = async (e: React.MouseEvent<HTMLButtonElement>) => {

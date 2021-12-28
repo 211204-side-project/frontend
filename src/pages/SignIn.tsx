@@ -65,7 +65,7 @@ const SignIn = () => {
   return (
     <SignInSection>
       <Helmet>
-        <title>login!</title>
+        <title>User sign in</title>
       </Helmet>
       <h1>User Sign in!</h1>
       <form onSubmit={handleSubmit(onSubmit)}>

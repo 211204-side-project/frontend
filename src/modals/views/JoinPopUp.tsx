@@ -10,8 +10,6 @@ import {
   ModalHeader,
   SelectJoin,
   ModalContent,
-  ModalBottom,
-  BottomSelect,
 } from '../styles/JoinPopUp.style'
 
 const JoinPopUp: React.FC<ModalCloseProps> = ({ modalClose }) => {
@@ -37,23 +35,18 @@ const JoinPopUp: React.FC<ModalCloseProps> = ({ modalClose }) => {
             onClick={handleJoin}
             className={isLogin ? 'active' : undefined}
           >
-            Login
+            SIGN IN
           </SelectJoin>
           <SelectJoin
             onClick={handleJoin}
             className={isSignUp ? 'active' : undefined}
           >
-            SigninUp
+            SIGN UP
           </SelectJoin>
         </ModalHeader>
-        <ModalContent>{isLogin ? <SignIn /> : <SignUp />}</ModalContent>
-        <ModalBottom>
-          {isLogin ? (
-            <BottomSelect>회원가입 하러가기</BottomSelect>
-          ) : (
-            <BottomSelect>로그인 하러가기</BottomSelect>
-          )}
-        </ModalBottom>
+        <ModalContent>
+          {isLogin ? <SignIn /> : <SignUp handleJoin={handleJoin} />}
+        </ModalContent>
         <ModalButton onClick={modalClose}>X</ModalButton>
       </Modal>
     </JoinContainer>

@@ -76,12 +76,3 @@ export const ModalContent = styled.div`
   justify-content: center;
   align-items: center;
 `
-
-export const ModalBottom = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-export const BottomSelect = styled.div`
-  color: #377cff;
-`
