@@ -41,6 +41,7 @@ const SignIn: React.FC<ModalCloseProps> = ({ modalClose }) => {
       }
       try {
         const { data } = await onSignIn(appendValues)
+        console.log(data)
         const token = data.object.token
         saveToken(token)
         dispatch(setIsLoggedIN(token))

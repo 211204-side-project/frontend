@@ -15,12 +15,12 @@ const initialState: UserState = {
 
 const SET_USER = 'SET_USER' as const
 
-export const set = (user: Pick<UserState, 'me'>) => ({
+export const setUserInformation = (user: Pick<UserState, 'me'>) => ({
   type: SET_USER,
   payload: user,
 })
 
-type SetUserAction = ReturnType<typeof set>
+type SetUserAction = ReturnType<typeof setUserInformation>
 
 export const setUserReducer = (
   state: UserState = initialState,
