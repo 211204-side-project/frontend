@@ -48,4 +48,18 @@ const onSignIn = (sign: Pick<User, 'accountId' | 'password'>) => {
   })
 }
 
-export { onSignUp, checkAccountId, checkPhoneNumber, checkNickname, onSignIn }
+const getUserSelf = () => {
+  return Send({
+    method: Method.GET,
+    url: '/user/self',
+  })
+}
+
+export {
+  onSignUp,
+  checkAccountId,
+  checkPhoneNumber,
+  checkNickname,
+  onSignIn,
+  getUserSelf,
+}

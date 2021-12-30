@@ -10,13 +10,18 @@ const TestH1 = styled.h1`
 `
 
 const IntroComponent = () => {
-  const { token } = useSelector((state: RootState) => ({
+  const { token, me } = useSelector((state: RootState) => ({
     token: state.setIsLoggedInReducer.isLoggedIn,
+    me: state.setUserReducer.me,
   }))
 
   return (
     <Main className="section-1">
-      {token ? <TestH1>Hello User!</TestH1> : <TestH1>Please Login!</TestH1>}
+      {token ? (
+        <TestH1>Hello {me.nickname}</TestH1>
+      ) : (
+        <TestH1>Please Login!</TestH1>
+      )}
     </Main>
   )
 }

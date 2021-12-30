@@ -14,6 +14,7 @@ import {
 import { useDispatch } from 'react-redux'
 import { setIsLoggedIN } from '../redux/modules/user/isLoggedIn'
 import { ModalCloseProps } from '../modals/interface/closeBtn.interface'
+import { setUserInformation } from '../redux/modules/user/set'
 
 const Button = styled.button`
   width: 100%;
@@ -41,10 +42,19 @@ const SignIn: React.FC<ModalCloseProps> = ({ modalClose }) => {
       }
       try {
         const { data } = await onSignIn(appendValues)
-        console.log(data)
         const token = data.object.token
         saveToken(token)
         dispatch(setIsLoggedIN(token))
+        dispatch(
+          setUserInformation({
+            me: {
+              accountId: data.object.accountId,
+              nickname: data.object.nickname,
+              phoneNumber: data.object.phoneNumber,
+              userImgUrl: data.object.userImgUrl,
+            },
+          }),
+        )
         enqueueSnackbar(SUCCESS)
         modalClose()
       } catch (err: any) {

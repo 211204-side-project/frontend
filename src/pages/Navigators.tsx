@@ -5,8 +5,9 @@ import JoinPopUp from '../modals/views/JoinPopUp'
 import { RootState } from '../redux/modules'
 import { useSelector } from 'react-redux'
 const Navigators: React.FC<OnClickJoin> = ({ modalClose, IsLogin }) => {
-  const { token } = useSelector((state: RootState) => ({
+  const { token, me } = useSelector((state: RootState) => ({
     token: state.setIsLoggedInReducer.isLoggedIn,
+    me: state.setUserReducer.me,
   }))
 
   return (
@@ -20,7 +21,7 @@ const Navigators: React.FC<OnClickJoin> = ({ modalClose, IsLogin }) => {
       <NaviRouter to="/">Lorem2</NaviRouter>
       <NaviRouter to="/usercontoller">Lorem3</NaviRouter>
       {token ? (
-        <NaviRouter to="/">Profile</NaviRouter>
+        <NaviRouter to={`/me/${me.nickname}`}>Profile</NaviRouter>
       ) : (
         <NaviRouter to="/" onClick={modalClose}>
           Join
