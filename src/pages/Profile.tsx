@@ -4,7 +4,6 @@ import { RootState } from '../redux/modules'
 import { useSelector } from 'react-redux'
 import UserController from './UserController'
 import LogOut from '../modals/LogOut'
-import { ACCESS_TOKEN } from '../common/constants/successOrFalse.constants'
 
 export const ProfileSection = styled.section`
   display: flex;
@@ -14,13 +13,6 @@ export const ProfileSection = styled.section`
 `
 
 const Profile = () => {
-  useEffect(() => {
-    const token = localStorage.getItem(ACCESS_TOKEN)
-    if (!token) {
-      window.location.href = '/'
-    }
-  })
-
   const { me } = useSelector((state: RootState) => ({
     token: state.setIsLoggedInReducer.isLoggedIn,
     me: state.setUserReducer.me,
