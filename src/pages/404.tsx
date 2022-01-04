@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const NotFoundPageSection = styled.section`
@@ -22,10 +22,11 @@ export const GoToPageClick = styled.span`
 `
 
 const NotFoundPage = () => {
+  const navi = useNavigate()
   const params = useParams()
 
   const goToHome = () => {
-    window.location.href = '/'
+    navi('/')
   }
 
   return (
