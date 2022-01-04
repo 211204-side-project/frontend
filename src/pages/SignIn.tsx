@@ -64,16 +64,8 @@ const SignIn: React.FC<ModalCloseProps> = ({ modalClose }) => {
     }
   }
 
-  const onLogout = () => {
-    removeToken()
-  }
-
   const saveToken = (token: string) => {
     localStorage.setItem(ACCESS_TOKEN, token)
-  }
-
-  const removeToken = () => {
-    localStorage.removeItem(ACCESS_TOKEN)
   }
 
   return (
@@ -119,9 +111,6 @@ const SignIn: React.FC<ModalCloseProps> = ({ modalClose }) => {
           )}
         </div>
         <Button type="submit">Sign in</Button>
-        <Button type="button" onClick={onLogout}>
-          Logout
-        </Button>
       </form>
     </SignInSection>
   )

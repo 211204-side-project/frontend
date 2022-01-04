@@ -43,7 +43,7 @@ const checkNickname = (nickname: Pick<User, 'nickname'>) => {
 const onSignIn = (sign: Pick<User, 'accountId' | 'password'>) => {
   return Send({
     method: Method.POST,
-    url: '/user/signin',
+    url: 'user/signin',
     data: sign,
   })
 }
@@ -51,7 +51,7 @@ const onSignIn = (sign: Pick<User, 'accountId' | 'password'>) => {
 const getUserSelf = () => {
   return Send({
     method: Method.GET,
-    url: '/user/self',
+    url: 'user/self',
   })
 }
 

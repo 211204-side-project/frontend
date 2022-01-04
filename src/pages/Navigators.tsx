@@ -19,7 +19,6 @@ const Navigators: React.FC<OnClickJoin> = ({ modalClose, IsLogin }) => {
       </NaviTitle>
       <NaviRouter to="/">Lorem1</NaviRouter>
       <NaviRouter to="/">Lorem2</NaviRouter>
-      <NaviRouter to="/usercontoller">Lorem3</NaviRouter>
       {token ? (
         <NaviRouter to={`/me/${me.nickname}`}>Profile</NaviRouter>
       ) : (

@@ -13,7 +13,13 @@ type VerifyConvention = {
   [key: string]: boolean
 }
 
-const UserController = () => {
+interface OnEditProfileModalProp {
+  onEditProfileModal: () => void
+}
+
+const UserController: React.FC<OnEditProfileModalProp> = ({
+  onEditProfileModal,
+}) => {
   const [userProfileImg, setUserProfileImg] = useState<any>(null)
   const [file, setFile] = useState<any>('')
   const [verify, setVerify] = useState<VerifyConvention>({
@@ -75,6 +81,7 @@ const UserController = () => {
       </SettingPassword>
       <SettingUserInfo>
         <button onClick={userInfoUpdate}>변경 완료</button>
+        <button onClick={onEditProfileModal}>Close</button>
       </SettingUserInfo>
     </Setting>
   )
