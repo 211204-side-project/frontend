@@ -3,10 +3,15 @@ import Navigators from './pages/Navigators'
 import Routers from './routes/Routers'
 import { getUserSelf } from './API/user'
 import { setUserInformation } from './redux/modules/user/set'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from './redux/modules'
 
 const App = () => {
   const [IsLogin, setIsLogin] = useState<boolean>(false)
+
+  const { token } = useSelector((state: RootState) => ({
+    token: state.setIsLoggedInReducer.isLoggedIn,
+  }))
 
   const modalClose = (): void => {
     setIsLogin(!IsLogin)
@@ -15,6 +20,9 @@ const App = () => {
   const dispatch = useDispatch()
 
   const user = async () => {
+    if (!token) {
+      return
+    }
     const { status, data } = await getUserSelf()
     if (status)
       dispatch(
@@ -30,7 +38,7 @@ const App = () => {
   }
 
   useEffect(() => {
-    user()
+    user().then(() => console.log('user state'))
   }, [])
 
   return (
